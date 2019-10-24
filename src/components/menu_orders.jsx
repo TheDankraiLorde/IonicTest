@@ -1,23 +1,11 @@
-import React,{useState, useEffect} from 'react';
-import menuItems from '../assets/menu.json';
+import React from 'react';
+import {connect} from 'react-redux';
 import { IonContent, IonList, IonItem, IonItemGroup, IonLabel, IonCheckbox, IonTitle, IonButton, IonInput } from '@ionic/react';
+import { withRouter } from 'react-router-dom';
+import { chooseItems } from '../redux/menu/menu.actions';
+import { addOrders } from '../redux/orders/orders.actions';
 
-const MenuOrders = () => {
-    const [menu, setMenu] = useState(menuItems.menu);
-    const [tableNo, setTableNo] = useState(0);
-    const handleChange = (id: any) =>{
-        const item = menu[id];
-        const newArr = menu.map(item => (
-            id === item.id ? { ...item, isSelect: !item.isSelect } : item
-        ))
-        setMenu(newArr);
-    }
-
-    useEffect(()=>{
-        console.log(menu);
-    })
-    
-
+const MenuOrders = ({history, menu, orders, addOrders}) => {
     return(
         <IonContent>
             <IonList>
@@ -26,7 +14,7 @@ const MenuOrders = () => {
                 </IonItem>
                 <IonItemGroup>
                 {
-                    menu.map((item:any) => (
+                    menu.map((item) => (
                         <IonItem key={item.id}>
                             <IonLabel>{item.item}</IonLabel>
                             <IonLabel>Rs {item.price}</IonLabel>
@@ -43,7 +31,7 @@ const MenuOrders = () => {
                 {
                     menu.filter(item=>(
                         item.isSelect
-                    )).map((item:any) => (
+                    )).map((item) => (
                         <IonItem key={item.id}>
                             <IonLabel>{item.item}</IonLabel>
                             <IonLabel>Rs {item.price}</IonLabel>
@@ -61,24 +49,23 @@ const MenuOrders = () => {
                     )
                 }</IonTitle>
                 <hr />
-                <IonButton slot="secondary" onClick={()=>
-                { 
-                    const itemsOrdered = menu.filter(item => item.isSelect);
-                    let arr:any = sessionStorage.getItem("orders");
-                    if(arr === null){
-                        arr = []
-                    }
-                    else{
-                        arr = JSON.parse(arr);
-                    }
-                    arr.push(itemsOrdered);
-                    sessionStorage.setItem("orders",JSON.stringify(arr));
-                    console.log(arr);
-                }}>Submit</IonButton>
                 </IonItemGroup>
             </IonList>
+            <IonButton onClick={() => {
+                handleSubmit();
+            }}>Submit</IonButton>
         </IonContent>
     )
 }
 
-export default MenuOrders;
+const mstp = (state) => ({
+    menu: state.menu.menuList,
+    orders: state.order.orders
+})
+
+const mdtp = (dispatch) =>({
+    selectItems: (item_id) => dispatch(chooseItems(item_id)),
+    addOrders: (order) => dispatch(addOrders(order))
+});
+
+export default connect(mstp,mdtp)(withRouter(MenuOrders));

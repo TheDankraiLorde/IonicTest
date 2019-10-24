@@ -26,7 +26,7 @@ import Random from './pages/menuitems';
 import SampleExample from './pages/testitem';
 import { GridExample } from './pages/TestGrid';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
