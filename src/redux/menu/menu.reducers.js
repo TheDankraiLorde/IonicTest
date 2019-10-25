@@ -1,7 +1,7 @@
 import menuData from '../../assets/menu.json';
 
 const INIT_STATE = {
-    menuList: menuData.menu
+    menuList: menuData.menu,
 }
 
 const menuReducer = (state=INIT_STATE, action) => {
@@ -13,6 +13,14 @@ const menuReducer = (state=INIT_STATE, action) => {
                                     { ...item, isSelect: !item.isSelect } 
                                     : item
                                 ))
+            }
+        
+        case "RESET_ITEMS":
+            return {
+                menuList: state.menuList.map(item => ({
+                    ...item,
+                    isSelect: false
+                }))
             }
 
         default:

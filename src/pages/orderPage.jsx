@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton} from '@ionic/react';
-import '../css/menuitem.css';
 
 const orderPage = () => {
     return (
@@ -10,7 +9,7 @@ const orderPage = () => {
                     <IonButtons slot="start">
                         <IonBackButton defaultHref="/home"/>
                     </IonButtons>
-                    <IonTitle>New Item</IonTitle>
+                    <IonTitle>Order Detail</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>

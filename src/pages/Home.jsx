@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonItem, IonLabel, IonBadge, IonIcon, IonNote, IonItemGroup, IonCard, IonCardContent, IonCardHeader } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonItem, IonLabel, IonBadge, IonIcon, IonNote, IonItemGroup, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/react';
 import {add, remove} from 'ionicons/icons';
 import {connect} from 'react-redux';
 import React from 'react';
@@ -17,8 +17,9 @@ const Home = ({history,orders, removeAll}) => {
           orders.map((order) => (
             <IonCard key={order.orderId}>
               <IonCardContent>
-                <IonCardHeader color="primary">
-                  <h1>Order #{order.orderId}</h1>
+                <IonCardHeader>
+                  <IonCardTitle><h1>Order #{order.orderId}</h1></IonCardTitle>
+                  <IonCardSubtitle><h2>Table {order.tableNo}</h2></IonCardSubtitle>
                 </IonCardHeader>
                 <IonItemGroup>
                 {

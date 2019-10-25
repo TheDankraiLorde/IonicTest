@@ -6,3 +6,4 @@ export const addOrders = (item) => ({
 export const removeAllOrders = () => ({
     type: "REMOVE_ALL",
 })
+
