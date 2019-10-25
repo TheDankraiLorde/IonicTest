@@ -1,14 +1,14 @@
 import { addItemToCart } from "./cart.utils"
 
 const INIT_STATE = {
-    cart: []
+    cartItems: []
 }
 
 const cartReducer = (state=INIT_STATE, action) => {
     switch(action.type){
         case "ADD_TO_CART":
             return {
-                cart : addItemToCart(state.cart, action.payload)
+                cartItems: addItemToCart(state.cartItems, action.payload)
             }
 
         case "REMOVE_FROM_CART":
@@ -19,7 +19,7 @@ const cartReducer = (state=INIT_STATE, action) => {
 
         case "RESET_CART":
             return{
-                cart: []
+                cartItems: []
             }
 
         default:

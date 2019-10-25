@@ -27,7 +27,7 @@ const Home = ({history,orders, removeAll}) => {
                     <IonItem key={item.id}>
                       <IonLabel>
                         <h2>{item.item}</h2>
-                        <IonNote>Rs {item.price}</IonNote>
+                        <IonNote>Quantity: {item.quantity}    Rs {item.price}</IonNote>
                       </IonLabel>
                     </IonItem>
                   ))

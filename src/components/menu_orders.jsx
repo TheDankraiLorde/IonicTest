@@ -6,7 +6,6 @@ import {
   IonItem,
   IonItemGroup,
   IonLabel,
-  IonCheckbox,
   IonTitle,
   IonButton,
   IonInput,
@@ -15,12 +14,12 @@ import {
 import { withRouter } from "react-router-dom";
 import { addOrders } from "../redux/orders/orders.actions";
 import { selectTableNo } from "../redux/table/table.actions";
-import { addItemToCart } from "../redux/cart/cart.utils";
-import menu from '../assets/menu.json';
+import { addToCart } from "../redux/cart/cart.actions";
+import menuItems from '../assets/menu.json';
 import { resetCart } from "../redux/cart/cart.actions";
 
-const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetItems, resetCart }) => {
-  
+const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetCart, addItemToCart }) => {
+  const menu = menuItems.menu
   const handleSubmit = () => {
     const itemTotal = cart.reduce((acc, item) => (acc+(item.price*item.quantity)),0)
     addOrders({
@@ -29,12 +28,11 @@ const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetItems, r
       total: itemTotal,
       tableNo: tableNo
     });
-    resetItems();
     resetCart();
     selTable(1);
     history.goBack();
   };
-
+  console.log(cart);
   return (
     <IonContent>
       <IonList>
@@ -64,15 +62,14 @@ const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetItems, r
           {cart.map(item => (
               <IonItem key={item.id}>
                 <IonLabel>{item.item}</IonLabel>
-                <IonLabel>{item.quantity}</IonLabel>
+                <IonLabel>Quantity: {item.quantity}</IonLabel>
                 <IonLabel>Rs {item.price}</IonLabel>
               </IonItem>
             ))}
           <hr />
           <IonTitle>
             Total: Rs{" "}
-            {menu
-              .filter(item => item.isSelect)
+            {cart
               .reduce((acc, item) => {
                 return acc + (item.price*item.quantity);
               }, 0)}
@@ -94,14 +91,13 @@ const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetItems, r
 const mstp = state => ({
   orders: state.order.orders,
   tableNo: state.table.tableNo,
-  cart: state.cart.cart
+  cart: state.cart.cartItems
 });
 
 const mdtp = dispatch => ({
   addOrders: order => dispatch(addOrders(order)),
   selTable: tableID => dispatch(selectTableNo(tableID)),
-  resetItems: () => dispatch(resetItems()),
-  addItemToCart: item => dispatch(addItemToCart(item)),
+  addItemToCart: item => dispatch(addToCart(item)),
   resetCart: () => dispatch(resetCart())
 });
 
