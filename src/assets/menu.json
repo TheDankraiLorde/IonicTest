@@ -3,20 +3,17 @@
         {
             "id" : 1,
             "item": "Spotted Dick in White Sauce",
-            "price": 120,
-            "isSelect": false
+            "price": 120
         },
         {
             "id" : 2,
             "item" : "Breasts and Thighs Combo",
-            "price": 150,
-            "isSelect": false
+            "price": 150
         },
         {
             "id" : 3,
             "item": "Chicken Nodules",
-            "price": 130,
-            "isSelect": false
+            "price": 130
         }
     ]
 }

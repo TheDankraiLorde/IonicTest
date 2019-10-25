@@ -6,7 +6,6 @@ const orderReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     
     case "ADD_ORDER":
-      console.log(state);
       const item = {
         ...action.payload,
         orderId: state.orders.length+1
