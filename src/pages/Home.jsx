@@ -29,7 +29,7 @@ const Home = ({history,orders, removeAll}) => {
                         <h2>{item.item}</h2>
                         <IonNote>Quantity: {item.quantity}</IonNote>
                       </IonLabel>
-                      <IonTitle slot="end">Rs {item.quantity*item.price}</IonTitle>
+                      <IonTitle slot="end">Rs {item.price} x {item.quantity}</IonTitle>
                     </IonItem>
                   ))
                 }
