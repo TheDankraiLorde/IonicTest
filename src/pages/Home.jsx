@@ -9,7 +9,7 @@ const Home = ({history,orders, removeAll}) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ionic Blank</IonTitle>
+          <IonTitle>Order Tracker 69.420</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -27,8 +27,9 @@ const Home = ({history,orders, removeAll}) => {
                     <IonItem key={item.id}>
                       <IonLabel>
                         <h2>{item.item}</h2>
-                        <IonNote>Quantity: {item.quantity}    Rs {item.price}</IonNote>
+                        <IonNote>Quantity: {item.quantity}</IonNote>
                       </IonLabel>
+                      <IonTitle slot="end">Rs {item.quantity*item.price}</IonTitle>
                     </IonItem>
                   ))
                 }
