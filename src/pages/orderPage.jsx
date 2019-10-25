@@ -1,8 +1,8 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton} from '@ionic/react';
-import MenuOrders from '../components/menu_orders';
+import '../css/menuitem.css';
 
-const Random = () => {
+const orderPage = () => {
     return (
         <IonPage>
             <IonHeader>
@@ -14,11 +14,9 @@ const Random = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <MenuOrders/>
             </IonContent>
         </IonPage>
     )
 } 
 
-
-export default Random;
+export default orderPage;

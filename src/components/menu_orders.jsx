@@ -18,9 +18,11 @@ import { addOrders } from "../redux/orders/orders.actions";
 const MenuOrders = ({ history, menu, selectItems, addOrders }) => {
   const handleSubmit = () => {
     const itemsOrdered = menu.filter(item => item.isSelect);
+    const itemTotal = itemsOrdered.reduce((acc,item) => (acc+(item.price)),0);
     addOrders({
       items: itemsOrdered,
-      status: "En Route"
+      status: "En Route",
+      total: itemTotal,
     });
     history.goBack();
   };

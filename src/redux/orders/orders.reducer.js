@@ -1,20 +1,27 @@
 const INITIAL_STATE = {
   orders: [],
-  orderId: 0
 };
 
 const orderReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    
     case "ADD_ORDER":
+      console.log(state);
+      const item = {
+        ...action.payload,
+        orderId: state.orders.length+1
+      }
       return {
         orders: [
           ...state.orders,
-          {
-            ...action.payload,
-            orderId: state.orderId + 1
-          }
+          item
         ]
       };
+
+    case "REMOVE_ALL":
+      return {
+        orders: []
+      }
 
     default:
       return state;
