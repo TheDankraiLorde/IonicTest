@@ -9,19 +9,31 @@ import {
   IonTitle,
   IonButton,
   IonInput,
-  IonItemDivider
+  IonItemDivider,
+  IonListHeader
 } from "@ionic/react";
 import { withRouter } from "react-router-dom";
 import { addOrders } from "../redux/orders/orders.actions";
 import { selectTableNo } from "../redux/table/table.actions";
 import { addToCart } from "../redux/cart/cart.actions";
-import menuItems from '../assets/menu.json';
+import menuItems from "../assets/menu.json";
 import { resetCart } from "../redux/cart/cart.actions";
 
-const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetCart, addItemToCart }) => {
-  const menu = menuItems.menu
+const MenuOrders = ({
+  history,
+  cart,
+  addOrders,
+  selTable,
+  tableNo,
+  resetCart,
+  addItemToCart
+}) => {
+  const menu = menuItems.menu;
   const handleSubmit = () => {
-    const itemTotal = cart.reduce((acc, item) => (acc+(item.price*item.quantity)),0)
+    const itemTotal = cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
     addOrders({
       items: cart,
       status: "En Route",
@@ -32,58 +44,68 @@ const MenuOrders = ({ history, cart, addOrders, selTable, tableNo, resetCart, ad
     selTable(1);
     history.goBack();
   };
-  console.log(cart);
   return (
     <IonContent>
       <IonList>
-        <IonItem color="light">
-          <IonTitle>Menu</IonTitle>
-        </IonItem>
+        <IonListHeader color="light">
+          <h2>Menu</h2>
+        </IonListHeader>
         <IonItemGroup>
           {menu.map(item => (
-            <IonItem key={item.id} onClick={() => {addItemToCart(item)}}>
+            <IonItem key={item.id}>
               <IonLabel>{item.item}</IonLabel>
               <IonLabel>Rs {item.price}</IonLabel>
+              <IonButton
+                onClick={() => {
+                  addItemToCart(item);
+                }}
+              >
+                Add
+              </IonButton>
             </IonItem>
           ))}
         </IonItemGroup>
-        <IonItemDivider/>
+        <IonItemDivider />
         <IonItem color="light">
           <IonTitle slot="start">Please select Table: </IonTitle>
-          <IonInput type="number" slot="end" value={tableNo} onInput={
-            (event) => selTable(event.target.value)
-          }></IonInput>
+          <IonInput
+            type="number"
+            slot="end"
+            value={tableNo}
+            onInput={event => selTable(event.target.value)}
+          ></IonInput>
         </IonItem>
-        <IonItemDivider/>
-        <IonItem color="light">
-          <IonTitle>Ordered Items</IonTitle>
-        </IonItem>
+        <IonItemDivider />
+        <IonListHeader color="light">
+          <h2>Ordered Items</h2>
+        </IonListHeader>
         <IonItemGroup>
           {cart.map(item => (
-              <IonItem key={item.id}>
-                <IonLabel>{item.item}</IonLabel>
-                <IonLabel>Quantity: {item.quantity}</IonLabel>
-                <IonLabel>Rs {item.price}</IonLabel>
-              </IonItem>
-            ))}
-          <hr />
-          <IonTitle>
-            Total: Rs{" "}
-            {cart
-              .reduce((acc, item) => {
-                return acc + (item.price*item.quantity);
+            <IonItem key={item.id}>
+              <IonLabel>{item.item}</IonLabel>
+              <IonLabel>Quantity: {item.quantity}</IonLabel>
+              <IonLabel>Rs {item.price}</IonLabel>
+            </IonItem>
+          ))}
+          <IonItem>
+            <IonTitle>
+              Total: Rs{" "}
+              {cart.reduce((acc, item) => {
+                return acc + item.price * item.quantity;
               }, 0)}
-          </IonTitle>
-          <hr />
+            </IonTitle>
+          </IonItem>
         </IonItemGroup>
       </IonList>
-      <IonButton
-        onClick={() => {
-          handleSubmit();
-        }}
-      >
-        Submit
-      </IonButton>
+      <IonItem>
+        <IonButton
+          onClick={() => {
+            handleSubmit();
+          }}
+        >
+          Submit
+        </IonButton>
+      </IonItem>
     </IonContent>
   );
 };
