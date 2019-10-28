@@ -2,7 +2,7 @@
   "name": "ioniccv",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://TheDankraiLorde.github.io/IonicTest",
+  "homepage": ".",
   "dependencies": {
     "@ionic/react": "^4.11.0",
     "@ionic/react-router": "^4.11.0",
