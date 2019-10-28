@@ -48,7 +48,6 @@ const OrderDetail = ({ orderId, orders, setQty, setStat, remItem, history, remov
           <IonItemGroup>
             {orders[orderId - 1].items.map((item,ind) => (
               <IonItem key={item.id} style={{textAlign: "center"}} >
-                <IonLabel>{ind+1}</IonLabel>
                 <IonLabel>{item.item}</IonLabel>
                 <IonLabel>{item.price}</IonLabel>
                 <IonItem>
