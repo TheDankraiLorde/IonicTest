@@ -8,7 +8,6 @@ import {
   IonLabel,
   IonItem,
   IonNote,
-  IonTitle,
   IonBadge,
   IonContent,
   IonCardHeader
@@ -37,14 +36,15 @@ const OrderList = ({ orders }) => {
               <IonItemGroup key={item.id}>
                 <IonItem>
                   <IonLabel>
-                    <h2 stlye={{fontWeight: "300"}}>{item.item}</h2>
-                  <IonNote>Quantity: {item.quantity}</IonNote>
+                    <h2 style={{fontWeight: "300"}}>{item.item}</h2>
+                  <IonNote>Quantity: {item.quantity}, </IonNote>
+                  <IonNote>Price Per Item: Rs {item.price}</IonNote>
                   </IonLabel>
                 </IonItem>
                 <IonItem style={{fontWeight: "350"}}>
                   <IonLabel>Price: </IonLabel>
                   <IonLabel slot="end">
-                    Rs {item.price} x {item.quantity}
+                    Rs {item.price * item.quantity}
                   </IonLabel>
                 </IonItem>
               </IonItemGroup>

@@ -11,7 +11,6 @@ import {
   IonInput,
   IonItemDivider,
   IonListHeader,
-  IonNote,
   IonCard,
   IonCardContent,
   IonCardHeader
@@ -63,7 +62,7 @@ const MenuOrders = ({
               <IonCardContent>
                 <IonItem>
                   <IonLabel slot="start">Rs {item.price}</IonLabel>
-                  <IonButton
+                  <IonButton slot="end"
                       onClick={() => {
                         addItemToCart(item);
                       }}
@@ -116,14 +115,17 @@ const MenuOrders = ({
               </IonCardContent>
             </IonCard>
           ))}
-          <IonItem>
-            <IonLabel style={{fontSize: "19px", fontWeight: "350"}}>
-              <h2>
-              Total: Rs{" "}
+          <IonItem style={{fontSize: "19px"}}>
+            <IonLabel slot="start">
+              <h1>
+              Total: 
+              </h1>
+            </IonLabel>
+            <IonLabel style={{textAlign: "right"}}>
+              <h1>Rs{" "}
               {cart.reduce((acc, item) => {
                 return acc + item.price * item.quantity;
-              }, 0)}
-              </h2>
+              }, 0)}</h1>
             </IonLabel>
           </IonItem>
         </IonItemGroup>

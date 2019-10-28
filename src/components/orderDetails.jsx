@@ -100,9 +100,9 @@ const OrderDetail = ({ orderId, orders, setQty, setStat, remItem, history, remov
             </IonSelect>
           </IonItem>
           <IonItemDivider/>
-          <IonItem>
-            <IonLabel slot="start"><h3 style={{fontWeight:"200"}}>Total:</h3></IonLabel>
-            <IonLabel slot="start"><h3 style={{fontWeight:"200"}}>Rs {orders[orderId - 1].total}</h3></IonLabel>
+          <IonItem style={{fontWeight:"bold"}}>
+            <IonLabel slot="start"><h1>Total:</h1></IonLabel>
+            <IonLabel style={{textAlign: "right"}}><h1>Rs {orders[orderId - 1].total}</h1></IonLabel>
           </IonItem>
           <IonItem>
             <IonButton slot="end" color="danger" onClick={()=>{
