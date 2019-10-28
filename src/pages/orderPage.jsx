@@ -6,7 +6,7 @@ import {
   IonTitle,
   IonToolbar,
   IonButtons,
-  IonBackButton
+  IonBackButton,
 } from "@ionic/react";
 import OrderDetail from "../components/orderDetails";
 

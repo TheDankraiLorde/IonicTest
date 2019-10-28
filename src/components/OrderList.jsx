@@ -15,7 +15,8 @@ import {
 } from "@ionic/react";
 import { Link } from "react-router-dom";
 
-const OrderList = ({ orders }) => (
+const OrderList = ({ orders }) => {
+  return (
   <IonContent>
     {orders.map(order => (
       <IonCard key={order.orderId}>
@@ -48,8 +49,8 @@ const OrderList = ({ orders }) => (
               <IonLabel slot="start">
                 <h1>Total: Rs {order.total}</h1>
               </IonLabel>
-              <IonBadge color="danger" slot="end">
-                {order.status}
+              <IonBadge color="primary" slot="end">
+                <h3>{order.status}</h3>
               </IonBadge>
             </IonItem>
           </IonItemGroup>
@@ -57,6 +58,6 @@ const OrderList = ({ orders }) => (
       </IonCard>
     ))}
   </IonContent>
-);
+)};
 
 export default OrderList;
