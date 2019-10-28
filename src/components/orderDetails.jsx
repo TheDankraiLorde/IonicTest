@@ -14,6 +14,9 @@ import {
   IonRow,
   IonInput,
   IonItemDivider,
+  IonCard,
+  IonCardHeader,
+  IonCardContent,
 } from "@ionic/react";
 import { connect } from "react-redux";
 import {withRouter} from 'react-router-dom'
@@ -40,27 +43,49 @@ const OrderDetail = ({ orderId, orders, setQty, setStat, remItem, history, remov
     );
   } else {
     return (
-      <IonContent>
+      <IonContent fullscreen={true}>
         <IonList>
           <IonListHeader color="light">
             <h1>Ordered Items: </h1>
           </IonListHeader>
           <IonItemGroup>
-            {orders[orderId - 1].items.map((item,ind) => (
-              <IonItem key={item.id} style={{textAlign: "center"}} >
-                <IonLabel>{item.item}</IonLabel>
-                <IonLabel>{item.price}</IonLabel>
-                <IonItem>
-                    <IonLabel>Quantity: </IonLabel>
-                    <IonInput type="number" min="1" onInput={(event) => {
-                      console.log(event.target.value);
-                      setQty(parseInt(event.target.value),item.id,orderId-1);
-                    }} style={{textAlign: "center"}} value={item.quantity}/>
-                </IonItem>
-                <IonButton onClick={()=>{
-                  remItem(orderId-1,item)
-                }}>Remove Item</IonButton>
-              </IonItem>
+            {orders[orderId - 1].items.map((item) => (
+              <IonCard key={item.id}>
+                <IonCard>
+                  <IonCardHeader>
+                    <IonTitle>{item.item}</IonTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <IonItemGroup>
+                      <IonItem>
+                        <IonLabel>
+                          Price per Item:
+                        </IonLabel>
+                        <IonLabel style={{alignText: "right"}}>
+                          Rs {item.price}
+                        </IonLabel>
+                      </IonItem>
+                      <IonItem>
+                        <IonLabel>Qty:</IonLabel>
+                        <IonInput type="number" min="1" onInput={(event) => {
+                          setQty(parseInt(event.target.value),item.id,orderId-1);
+                        }} style={{textAlign: "center"}} value={item.quantity} placeholder="Quantity"/>
+                      </IonItem>
+                      <IonItem>
+                        <IonLabel>Total Price: </IonLabel>
+                        <IonLabel>Rs {item.price * item.quantity}</IonLabel>
+                      </IonItem>
+                      <IonItem>
+                        <IonButton  slot="end" onClick={()=>{
+                          remItem(orderId-1,item)
+                        }}>
+                        Remove Item
+                        </IonButton>
+                      </IonItem>
+                    </IonItemGroup>
+                  </IonCardContent>
+                </IonCard>
+              </IonCard>
             ))}
           </IonItemGroup>
           <IonItemDivider/>
@@ -76,8 +101,10 @@ const OrderDetail = ({ orderId, orders, setQty, setStat, remItem, history, remov
           </IonItem>
           <IonItemDivider/>
           <IonItem>
-            <IonTitle style={{textAlign: "center"}}>Total: </IonTitle>
-            <IonTitle style={{textAlign: "center"}}>Rs {orders[orderId - 1].total}</IonTitle>
+            <IonLabel slot="start"><h3 style={{fontWeight:"200"}}>Total:</h3></IonLabel>
+            <IonLabel slot="start"><h3 style={{fontWeight:"200"}}>Rs {orders[orderId - 1].total}</h3></IonLabel>
+          </IonItem>
+          <IonItem>
             <IonButton slot="end" color="danger" onClick={()=>{
               history.goBack();
               removeAll();

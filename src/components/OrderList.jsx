@@ -34,21 +34,31 @@ const OrderList = ({ orders }) => {
 
           <IonItemGroup>
             {order.items.map(item => (
-              <IonItem key={item.id}>
-                <IonLabel>
-                  <h2>{item.item}</h2>
+              <IonItemGroup key={item.id}>
+                <IonItem>
+                  <IonLabel>
+                    <h2 stlye={{fontWeight: "300"}}>{item.item}</h2>
                   <IonNote>Quantity: {item.quantity}</IonNote>
-                </IonLabel>
-                <IonTitle slot="end">
-                  Rs {item.price} x {item.quantity}
-                </IonTitle>
-              </IonItem>
+                  </IonLabel>
+                </IonItem>
+                <IonItem style={{fontWeight: "350"}}>
+                  <IonLabel>Price: </IonLabel>
+                  <IonLabel slot="end">
+                    Rs {item.price} x {item.quantity}
+                  </IonLabel>
+                </IonItem>
+              </IonItemGroup>
             ))}
             <br />
             <IonItem>
-              <IonLabel slot="start">
-                <h1>Total: Rs {order.total}</h1>
+              <IonLabel>
+                <h1>Total:</h1>
               </IonLabel>
+              <IonLabel>
+                <h1>Rs {order.total}</h1>
+              </IonLabel>
+            </IonItem>
+            <IonItem>
               <IonBadge color="primary" slot="end">
                 <h3>{order.status}</h3>
               </IonBadge>

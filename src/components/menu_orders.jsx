@@ -10,7 +10,11 @@ import {
   IonButton,
   IonInput,
   IonItemDivider,
-  IonListHeader
+  IonListHeader,
+  IonNote,
+  IonCard,
+  IonCardContent,
+  IonCardHeader
 } from "@ionic/react";
 import { withRouter } from "react-router-dom";
 import { addOrders } from "../redux/orders/orders.actions";
@@ -52,17 +56,24 @@ const MenuOrders = ({
         </IonListHeader>
         <IonItemGroup>
           {menu.map(item => (
-            <IonItem key={item.id}>
-              <IonLabel>{item.item}</IonLabel>
-              <IonLabel>Rs {item.price}</IonLabel>
-              <IonButton
-                onClick={() => {
-                  addItemToCart(item);
-                }}
-              >
-                Add
-              </IonButton>
-            </IonItem>
+            <IonCard key={item.id}>
+              <IonCardHeader>
+                <IonLabel style={{fontSize:"19px"}}>{item.item}</IonLabel>
+              </IonCardHeader>
+              <IonCardContent>
+                <IonItem>
+                  <IonLabel slot="start">Rs {item.price}</IonLabel>
+                  <IonButton
+                      onClick={() => {
+                        addItemToCart(item);
+                      }}
+                  >
+                  Add
+                  </IonButton>
+                </IonItem>
+              </IonCardContent>
+              
+            </IonCard>
           ))}
         </IonItemGroup>
         <IonItemDivider />
@@ -83,19 +94,37 @@ const MenuOrders = ({
         </IonListHeader>
         <IonItemGroup>
           {cart.map(item => (
-            <IonItem key={item.id}>
-              <IonLabel>{item.item}</IonLabel>
-              <IonLabel>Quantity: {item.quantity}</IonLabel>
-              <IonLabel>Rs {item.price}</IonLabel>
-            </IonItem>
+            <IonCard key={item.id}>
+              <IonCardHeader>
+                <IonLabel style={{fontSize:"19px"}}>
+                  {item.item}
+                </IonLabel>
+              </IonCardHeader>
+              <IonCardContent>
+                <IonItem>
+                  <IonLabel slot="start">Quantity: {item.quantity}</IonLabel>
+                  <IonLabel style={{textAlign:"right"}}>Rs {item.price} each</IonLabel>
+                </IonItem>
+                <IonItem style={{fontSize: "19px"}}>
+                  <IonLabel slot="start">
+                    Total Price:
+                  </IonLabel>
+                  <IonLabel style={{textAlign:"right"}}>
+                    Rs {item.quantity * item.price}
+                  </IonLabel>
+                </IonItem>
+              </IonCardContent>
+            </IonCard>
           ))}
           <IonItem>
-            <IonTitle>
+            <IonLabel style={{fontSize: "19px", fontWeight: "350"}}>
+              <h2>
               Total: Rs{" "}
               {cart.reduce((acc, item) => {
                 return acc + item.price * item.quantity;
               }, 0)}
-            </IonTitle>
+              </h2>
+            </IonLabel>
           </IonItem>
         </IonItemGroup>
       </IonList>
