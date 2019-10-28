@@ -21,7 +21,7 @@ const Home = ({ history, orders, removeAll }) => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Order Tracker 69.420</IonTitle>
+          <IonTitle>Order Tracker v1.0</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">

@@ -2,28 +2,28 @@
   "menu": [
     {
       "id": 1,
-      "item": "Spotted Dick in White Sauce",
-      "price": 120
+      "item": "Roast Duck in White Sauce",
+      "price": 220
     },
     {
       "id": 2,
-      "item": "Breasts and Thighs Combo",
-      "price": 150
+      "item": "Chicken Kabab Combo",
+      "price": 350
     },
     {
       "id": 3,
       "item": "Chicken Nodules",
-      "price": 130
+      "price": 150
     },
     {
       "id": 4,
-      "item": "Sweet Porn Chicken Soup",
+      "item": "Sweet Corn Chicken Soup",
       "price": 110
     },
     {
       "id": 5,
-      "item": "Haga Chowmein",
-      "price": 150
+      "item": "Mixed Hakka Chowmein",
+      "price": 160
     }
   ]
 }
