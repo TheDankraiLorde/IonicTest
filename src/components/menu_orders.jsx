@@ -73,7 +73,7 @@ const MenuOrders = ({
             slot="end"
             value={tableNo}
             min={1}
-            max={5}
+            max={10}
             onInput={event => selTable(event.target.value)}
           ></IonInput>
         </IonItem>
