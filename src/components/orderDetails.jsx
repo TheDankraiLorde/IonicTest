@@ -144,8 +144,8 @@ const OrderDetail = ({
               slot="end"
               color="danger"
               onClick={() => {
+                removeOrder(parseInt(orderId));
                 history.goBack();
-                removeOrder(orderId);
               }}
             >
               Delete Order

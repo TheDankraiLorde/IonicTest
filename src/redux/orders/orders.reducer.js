@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-  orders: []
+  orders: [],
+  currentOrderNo: 0
 };
 
 const orderReducer = (state = INITIAL_STATE, action) => {
@@ -9,15 +10,17 @@ const orderReducer = (state = INITIAL_STATE, action) => {
     case "ADD_ORDER":
       const item = {
         ...action.payload,
-        orderId: state.orders.length + 1
+        orderId: state.currentOrderNo + 1
       };
       return {
-        orders: [...state.orders, item]
+        orders: [...state.orders, item],
+        currentOrderNo: state.currentOrderNo + 1
       };
 
     case "REMOVE_ALL":
       return {
-        orders: []
+        orders: [],
+        currentOrderNo: 0
       };
 
     case "SET_QTY":
@@ -36,11 +39,13 @@ const orderReducer = (state = INITIAL_STATE, action) => {
           : order
       );
       return {
+        ...state,
         orders: newOrders
       };
 
     case "SET_STATUS":
       return {
+        ...state,
         orders: state.orders.map(order =>
           order.orderId === action.payload.orderInd + 1
             ? { ...order, status: action.payload.status }
@@ -62,12 +67,17 @@ const orderReducer = (state = INITIAL_STATE, action) => {
           : order
       );
       return {
+        ...state,
         orders: newOrders
       };
 
     case "REM_ORDER":
-      newOrders = state.orders.filter(order => order.orderId != action.payload);
+      newOrders = state.orders.filter(order => {
+        console.log(order.orderId, action.payload);
+        return order.orderId !== action.payload;
+      });
       return {
+        ...state,
         orders: newOrders
       };
 
