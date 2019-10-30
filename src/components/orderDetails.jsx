@@ -24,7 +24,8 @@ import {
   setQuantity,
   setStatus,
   removeItem,
-  removeAllOrders
+  removeAllOrders,
+  removeOrder
 } from "../redux/orders/orders.actions";
 
 const OrderDetail = ({
