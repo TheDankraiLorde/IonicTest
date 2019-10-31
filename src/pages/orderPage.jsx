@@ -12,6 +12,7 @@ import OrderDetail from "../components/orderDetails";
 
 const orderPage = ({ match }) => {
   const { orderId } = match.params;
+  const orderNo = parseInt(orderId);
   return (
     <IonPage>
       <IonHeader>
@@ -23,7 +24,7 @@ const orderPage = ({ match }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <OrderDetail orderId={orderId} />
+        <OrderDetail orderId={orderNo} />
       </IonContent>
     </IonPage>
   );

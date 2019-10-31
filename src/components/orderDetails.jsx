@@ -35,10 +35,10 @@ const OrderDetail = ({
   setStat,
   remItem,
   history,
-  removeAll,
   removeOrder
 }) => {
-  if (!orders[orderId - 1] || orders.length === 0) {
+  const orderx = orders.find( order => order.orderId === orderId);
+  if (!orderx || orders.length === 0) {
     return (
       <IonContent>
         <IonGrid style={{ height: "100%" }}>
@@ -64,7 +64,7 @@ const OrderDetail = ({
             <h1>Ordered Items: </h1>
           </IonListHeader>
           <IonItemGroup>
-            {orders[orderId - 1].items.map(item => (
+            {orderx.items.map(item => (
               <IonCard key={item.id}>
                 <IonCard>
                   <IonCardHeader>
@@ -136,7 +136,7 @@ const OrderDetail = ({
               <h1>Total:</h1>
             </IonLabel>
             <IonLabel style={{ textAlign: "right" }}>
-              <h1>Rs {orders[orderId - 1].total}</h1>
+              <h1>Rs {orderx.total}</h1>
             </IonLabel>
           </IonItem>
           <IonItem>
